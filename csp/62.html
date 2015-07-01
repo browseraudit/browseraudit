@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <!-- Chromium tries to load the page as a frame without the explicit type, and
+       therefore looks at frame-src not object-src. We're trying to test object-
+       src here, so use this type attribute to force it. -->
+  <object data="https://test.browseraudit.com/csp/pass/62/swf" type="application/x-shockwave-flash"></object>
+</body>
+</html>

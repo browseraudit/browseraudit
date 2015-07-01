@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  {{.Script}}
+</head>
+<body>
+  <script>
+    // We create the iframe with JavaScript to guarantee that the onload is always executed
+    var child = document.createElement("iframe");
+    child.onload = function() {
+      var d = (child.contentWindow || child.contentDocument);
+      if (d.document)
+        d = d.document;
+
+      if (d.location.protocol) {
+        var img = document.createElement("img");
+        img.setAttribute("src", "https://browseraudit.com/sop/{{.Result}}/{{.TestId}}");
+        document.body.appendChild(img);
+      }
+    };
+    child.setAttribute("src", {{.ChildSrc}});
+    document.body.appendChild(child);
+  </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+#scoreboard-noscript h2 {
+	margin-bottom: 30px;
+}
+
+.jumbotron p.small {
+	font-size: 12px;
+	margin-top: 12px;
+}
+
+.btn .glyphicon { /* improved spacing of glyphicons in buttons */
+	margin-right: 6px;
+}
+
+/* Category selection panel */
+
+#browseraudit-categories .treegrid-indent {
+	float: left;
+}
+
+#browseraudit-categories .treegrid-expander, #browseraudit-categories .category-checkbox {
+	margin-right: 8px;
+	float: left;
+}
+
+#browseraudit-categories .title {
+	overflow: hidden;
+}
+
+#browseraudit-categories .glyphicon {
+	top: 2px; /* slightly greater than the 1px of bootstrap's .glyphicon */
+}
+
+#browseraudit-categories input[type="checkbox"] {
+	margin: 3px 0 0; /* slightly less than the 4px 0 0 of bootstrap's input[type="checkbox"] */
+}
+
+#browseraudit-categories label {
+	display: block; /* instead of bootstrap's value of inline-block for labels */
+	font-weight: inherit; /* remove bootstrap's value of 700 for labels */
+	margin-bottom: inherit; /* remove bootstrap's value of 5px for labels */
+}
+
+#browseraudit-categories .treegrid-expander {
+	cursor: inherit; /* overrides jquery-treegrid's value of cursor for .treegrid-expander (see rule below) */
+}
+
+#browseraudit-categories .glyphicon-chevron-down, #browseraudit-categories .glyphicon-chevron-right {
+	cursor: pointer; /* only use pointer for .treegrid-expanders that also contain chevron glyphicons */
+}
+
+/* Horizontal forms */
+
+@media (min-width: 768px) { /* bootstrap's @screen-sm-min */
+	.form-horizontal .form-group {
+		margin-bottom: inherit; /* remove bootstrap's value of 15px for .form-groups */
+	}
+}
+
+.form-horizontal .form-group p.value {
+	padding-top: 7px; /* to match bootstrap's .form-horizontal (.checkbox|.radio) */
+}
+
+.form-horizontal .form-group p.value span {
+	margin-right: 5px;
+}
+
+.form-horizontal .form-group p.value .label {
+	margin-left: 2px;
+}
+
+.form-horizontal .form-group p.value .label img {
+	margin-right: 4px;
+}
+
+.form-horizontal .form-group p.value .label span {
+	margin-right: 0; /* undo margin-right: 5px for spans inside bootstrap labels */
+}
+
+.form-horizontal .form-group p.description {
+	margin-top: 10px;
+	color: #888;
+	font-size: 85%; /* bootstrap's .small */
+}
+
+@media (min-width: 768px) { /* bootstrap's @screen-sm-min */
+	.form-horizontal label.control-label {
+		font-weight: inherit; /* remove bootstrap's value of 700 for labels */
+	}
+}
+
+/* Scoreboard */
+
+#scoreboard .panel {
+	margin-bottom: 0;
+}
+
+/* Notification bar */
+
+#notification-bar {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1030;
+	display: none; /* initially not visible */
+}
+
+#notification-bar .container {
+	text-align: center;
+}
+
+#notification-bar .navbar {
+	display: inline-block;
+	border-radius: 0 0 8px 8px;
+	border-width: 0 0 1px;
+	margin: 0 auto;
+	cursor: default;
+}
+
+#notification-bar .navbar a {
+	color: white;
+}
+
+#notification-bar .navbar-clickable {
+	cursor: pointer;
+}
+
+#notification-bar .notification-bar-text {
+	float: none;
+	margin: 15px 25px;
+}
+
+#notification-bar .navbar-clickable:hover .notification-bar-text {
+	color: white; 
+}
+
+#notification-bar .glyphicon {
+	margin-right: 10px;
+}
+
+/* Top-level panels */
+
+.panel-toplevel > .panel-heading > .panel-title {
+	font-size: 18px;
+}
+
+.panel-toplevel > .panel-heading .panel-title a:after {
+	font-family: 'Glyphicons Halflings';
+	content: "\e114"; /* down arrow */
+	float: right;
+	color: gray;
+}
+
+.panel-toplevel > .panel-heading .panel-title a.collapsed:after {
+	content: "\e080"; /* right arrow */
+}
+
+/* Test report container */
+
+#browseraudit-test-results {
+	margin-top: 20px;
+}
+
+#browseraudit-category-root { /* same colours as .well in bootstrap */
+	background-color: #eee;
+	color: inherit;
+}
+
+#browseraudit-test-results .panel-group {
+	margin-bottom: 0;
+}
+
+/* Test report categories */
+
+#browseraudit-test-results .panel-title .badge {
+	cursor: default;
+	margin-left: 4px;
+}
+
+#browseraudit-test-results .panel-title .glyphicon {
+	cursor: default;
+}
+
+.badge-danger {
+  background-color: #d9534f !important;
+}
+
+.badge-warning {
+  background-color: #f0ad4e !important;
+}
+
+.badge-info {
+	background-color: #5bc0de !important;
+}
+
+.category-description-present {
+	margin-bottom: 5px;
+}
+
+/* Test reports */
+
+.list-group {
+	margin-bottom: 0;
+}
+
+.list-group-item table {
+	width: 100%;
+}
+
+.list-group-item td {
+	vertical-align: top;
+	padding: 0;
+}
+
+.list-group-item .nowrap {
+	white-space: nowrap;
+}
+
+.list-group-item .label {
+	margin-right: 10px;
+	vertical-align: middle;
+	cursor: default;
+}
+
+.list-group-item .test-title {
+	width: 99%;
+}
+
+a.list-group-item-heading, a.list-group-item-heading:active, a.list-group-item-heading:hover {
+	color: inherit;
+}
+
+.list-group-item .glyphicon {
+	margin-left: 10px;
+	cursor: default;
+}
+
+.list-group-item-text {
+	margin-top: 14px;
+	margin-bottom: 0;
+	padding-bottom: 10px;
+	color: #333333; /* overrides effects of parent .list-group-item-(danger,warning,info) */
+}
+
+.alert-default { /* same colours as .well in bootstrap, but inverted */
+	background-image: linear-gradient(to bottom, #f5f5f5 0px, #e8e8e8 100%);
+	background-repeat: repeat-x;
+	border-color: #dcdcdc;
+}
+
+/* Sandbox */
+
+#sandbox {
+	visibility: hidden;
+	height: 0;
+	overflow: hidden;
+}
+
+/* TODO: audit the following rules; only add them if necessary */
+
+/*
+.browseraudit-error, .tt {
+  font-family: monospace;
+}
+*/

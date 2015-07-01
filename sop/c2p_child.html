@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  {{.Script}}
+</head>
+<body>
+  <script>
+    if (window.parent.document.location.protocol) {
+      var img = document.createElement("img");
+      img.setAttribute("src", "https://browseraudit.com/sop/{{.Result}}/{{.TestId}}");
+      document.body.appendChild(img);
+    }
+  </script>
+</body>
+</html>

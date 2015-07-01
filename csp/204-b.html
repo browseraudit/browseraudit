@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <script>
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/csp/serve/204/oktext?sessid={{.SessionID}}&corsOrigin=browseraudit.com&corsMethod=GET", false);
+    xhr.send(null);
+    if (xhr.status == 200) {
+      var img = document.createElement("img");
+      img.setAttribute("src", "/csp/pass/204/png");
+      document.body.appendChild(img);
+    }
+  </script>
+</body>
+</html>

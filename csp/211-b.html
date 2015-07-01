@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <script src="/static/js/jquery-1.11.3.min.js"></script>
+  <script src="/static/js/jquery.cookie.js"></script>
+</head>
+<body>
+  <script>
+    var cookieDomain = "{{.CookieDomain}}";
+    var escapedDomain = cookieDomain.replace(/\./g, "_");
+    if ($.cookie("cspCookie_" + escapedDomain) === cookieDomain) {
+      var img = document.createElement("img");
+      img.setAttribute("src", "/csp/fail/211/png");
+      document.body.appendChild(img);
+    }
+  </script>
+</body>
+</html>

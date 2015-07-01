@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'BrowserAuditTestFont';
+  src: url('https://test.browseraudit.com/csp/fail/161/eot?sessid={{.SessionID}}');
+  src: url('https://test.browseraudit.com/csp/fail/161/eot?sessid={{.SessionID}}#iefix') format('embedded-opentype'),
+       url('https://test.browseraudit.com/csp/fail/161/woff?sessid={{.SessionID}}') format('woff'),
+       url('https://test.browseraudit.com/csp/fail/161/ttf?sessid={{.SessionID}}') format('truetype'),
+       url('https://test.browseraudit.com/csp/fail/161/svg?sessid={{.SessionID}}#BrowserAuditTestFont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+span {
+  speak: none;
+  font-family: 'BrowserAuditTestFont', monospace, sans-serif, serif;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+}

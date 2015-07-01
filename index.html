@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>BrowserAudit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="/static/css/jquery.treegrid.css" />
+    <link rel="stylesheet" href="/static/css/browseraudit.css" />
+
+    <!--[if lt IE 9]>
+      <script src="/static/js/html5shiv.js"></script>
+      <script src="/static/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>BrowserAudit</h1>
+      </div>
+      <div class="jumbotron">
+        <h1>How secure is your browser?</h1>
+        <p>BrowserAudit checks that your web browser correctly implements a wide variety of security standards and features. Hit the button below to run the tests &mdash; there are over 400, but they should only take a few minutes to run.</p>
+        <a href="#" class="btn btn-primary btn-lg browseraudit-start">Test me &raquo;</a>
+				<p class="small">Your test results will be sent back to us to help us improve BrowserAudit. You can <a href="#" onclick="browserAuditUI.settingsPanel.scrollTo('sendresults');">turn off test result reporting</a> if you'd prefer not to share them with us.</p>
+      </div>
+			<div class="panel-group">
+				<!-- Begin category selection panel -->
+				<div class="panel panel-toplevel panel-default">
+					<div class="panel-heading">
+						<h2 class="panel-title">
+							<a href="#browseraudit-categories" data-toggle="collapse" aria-expanded="false" aria-controls="browseraudit-categories" class="collapsed">Choose Test Categories <small>(Advanced)</small></a>
+						</h2>
+					</div>
+					<div id="browseraudit-categories" class="panel-collapse collapse">
+						<div class="panel-body">
+							<p>We've preselected a set of tests you may like to run in your browser. If you'd prefer to run a different set of tests, you can choose the categories containing the tests you'd like to run by checking the boxes next to the category names below.</p>
+						</div>
+						<table class="table"></table>
+					</div>
+				</div>
+				<!-- End category selection panel -->
+				<!-- Begin settings panel -->
+				<div class="panel panel-toplevel panel-default">
+					<div class="panel-heading">
+						<h2 class="panel-title">
+							<a href="#browseraudit-settings" data-toggle="collapse" aria-expanded="false" aria-controls="browseraudit-settings" class="collapsed">Other Settings</a>
+						</h2>
+					</div>
+					<div id="browseraudit-settings" class="panel-collapse collapse">
+						<div class="panel-body form-horizontal">
+							<div class="form-group" data-setting="displaymode">
+								<label class="col-sm-2 control-label">Display mode</label>
+								<div class="col-sm-10">
+									<div class="radio">
+										<label>
+											<input type="radio" name="displaymode" value="none">
+											None <small>(only shows notification bar)</small>
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="displaymode" value="summary">
+											Summary <small>(only shows notification bar and overall test scores)</small>
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="displaymode" value="full" checked>
+											Full <small>(shows notification bar, overall test scores and individual test results)</small>
+										</label>
+									</div>
+									<p class="description">If you're running BrowserAudit on a mobile device or an older computer, it may run faster if you choose one of the lesser display modes. You'll still be able to review individual test results later if you choose to report your results (see below).</p>
+								</div>
+							</div>
+							<div class="form-group" data-setting="sendresults">
+								<label class="col-sm-2 control-label">Test result reporting</label>
+								<div class="col-sm-10">
+									<div class="radio">
+										<label>
+											<input type="radio" name="sendresults" value="false">
+											Off
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="sendresults" value="true" checked>
+											On
+										</label>
+									</div>
+									<p class="description">Reporting your test results allows you (and only you) to review them later, and allows us to improve BrowserAudit's performance and design more effective tests. We'll store your test results, along with your IP address and web browser's <code>User-Agent</code> string. <strong>We do not collect any personally-identifying information or share your individual test results with anyone else.</strong></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End settings panel -->
+			</div>
+    </div>
+
+    <script src="/static/js/jquery-1.11.3.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.scrollto.js"></script>
+    <script src="/static/js/jquery.treegrid.min.js"></script>
+    <script src="/static/js/jquery.treegrid.bootstrap3.js"></script>
+
+		<script src="/static/js/URI.js"></script>
+
+		<script src="/static/js/ui.js"></script>
+		<script src="/category_tree"></script>
+		<script src="/static/js/test_button.js"></script>
+  </body>
+</html>
