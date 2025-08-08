@@ -1,0 +1,4 @@
+
+ssl_certificate /srv/browseraudit/sysadmin/nginx/fullchain.pem;
+ssl_certificate_key /srv/browseraudit/sysadmin/nginx/privkey.pem;
+ssl_trusted_certificate /srv/browseraudit/sysadmin/nginx/fullchain.pem;

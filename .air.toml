@@ -1,0 +1,12 @@
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  cmd = "go build -o ./browseraudit ."
+  bin = "browseraudit"
+  full_bin = "./browseraudit -c development-server.yml"
+  include_ext = ["go", "yml", "html", "js", "css"]
+  exclude_dir = ["tmp", "vendor", ".git", "node_modules", ".vscode"]
+
+[log]
+  time = true

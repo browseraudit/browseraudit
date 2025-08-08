@@ -3,11 +3,12 @@ package main
 import (
 	"encoding/base64"
 	"fmt"
-	"github.com/gorilla/mux"
 	"html/template"
 	"log"
 	"net/http"
 	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
 type FrameOptionsPage struct {
@@ -40,7 +41,7 @@ func FrameOptionsResultHandler(w http.ResponseWriter, r *http.Request) {
 
 	session := store.Get(w, r)
 
-	result, err := session.Get("frameoptions"+mux.Vars(r)["id"])
+	result, err := session.Get("frameoptions" + mux.Vars(r)["id"])
 	if err != nil {
 		log.Printf("nil result frameoptions%s", mux.Vars(r)["id"])
 		result = "nil"

@@ -1,0 +1,50 @@
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    server_name browseraudit.com test.browseraudit.com browseraudit.org test.browseraudit.org;
+
+    include /srv/browseraudit/sysadmin/nginx/snippets/internal-server-nonuser;
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name www.browseraudit.com www.browseraudit.org;
+
+    include /srv/browseraudit/sysadmin/nginx/snippets/internal-server-redirect;
+}
+
+server {
+    listen 443 ssl default_server;
+    listen [::]:443 ssl default_server;
+
+    server_name browseraudit.com;
+
+    include /srv/browseraudit/sysadmin/nginx/snippets/tls;
+    include /srv/browseraudit/sysadmin/nginx/snippets/tls-certificates;
+    include /srv/browseraudit/sysadmin/nginx/snippets/internal-server-user;
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    server_name test.browseraudit.com browseraudit.org test.browseraudit.org;
+
+    include /srv/browseraudit/sysadmin/nginx/snippets/tls;
+    include /srv/browseraudit/sysadmin/nginx/snippets/tls-certificates;
+    include /srv/browseraudit/sysadmin/nginx/snippets/internal-server-nonuser;
+}
+
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
+    server_name www.browseraudit.com www.browseraudit.org;
+
+    include /srv/browseraudit/sysadmin/nginx/snippets/tls;
+    include /srv/browseraudit/sysadmin/nginx/snippets/tls-certificates;
+    include /srv/browseraudit/sysadmin/nginx/snippets/internal-server-redirect;
+}

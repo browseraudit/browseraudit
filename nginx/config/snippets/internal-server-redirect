@@ -1,0 +1,8 @@
+
+location = / {
+    return 301 https://browseraudit.com$request_uri;
+}
+
+location = /test {
+    return 301 https://browseraudit.com$request_uri;
+}

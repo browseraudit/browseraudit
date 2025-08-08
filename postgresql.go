@@ -13,7 +13,7 @@ type IntSlice []int
 
 type NullIntSlice struct {
 	IntSlice IntSlice
-	Valid    bool     // true if IntSlice is not NULL
+	Valid    bool // true if IntSlice is not NULL
 }
 
 // Scans a Postgres integer array into an IntSlice
@@ -34,7 +34,7 @@ func strToIntSlice(s string) []int {
 	r := strings.Trim(s, "{}")
 	a := make([]int, 0, 10)
 	for _, t := range strings.Split(r, ",") {
-		i,_ := strconv.Atoi(t)
+		i, _ := strconv.Atoi(t)
 		a = append(a, i)
 	}
 	return a

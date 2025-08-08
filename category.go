@@ -21,7 +21,7 @@ func JSONCategoryTreeHandler(w http.ResponseWriter, r *http.Request) {
 	DontCache(&w)
 	w.Header().Set("Content-Type", "text/javascript")
 	fmt.Fprintln(w, "(function() {")
-	
+
 	// Get the live category list from the category table --- this is sorted by
 	// the order in which the categories are to be displayed
 	// Suggestion for using WITH RECURSIVE courtesy of:
@@ -44,6 +44,8 @@ func JSONCategoryTreeHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Panic(err)
 	}
+
+	defer hierarchy.Close()
 
 	// Each row represents one category in the category hierarchy
 	cat := CategoryRow{}

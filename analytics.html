@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./static/css/analytics.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1"></script>
+    <script src="./static/js/analyticsUI.js"></script>
+    <title>BrowserAudit Data Analysis</title>
+  </head>
+
+  <body>
+    <div class="page-title">
+      <h1>BrowserAudit Data Analysis</h1>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <h2>Download Data</h2>
+        <div class="chart-container">
+          <table class="small-table" id="links-table">
+            <thead>
+              <tr>
+                <th>Link</th>
+                <th>Size</th>
+                <th>Year</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="static/data/2015.zip">2015.zip</a></td>
+                <td>396 KB</td>
+                <td>2015</td>
+              </tr>
+              <tr>
+                <td><a href="static/data/2016.zip">2016.zip</a></td>
+                <td>1.3 MB</td>
+                <td>2016</td>
+              </tr>
+              <tr>
+                <td><a href="static/data/2017.zip">2017.zip</a></td>
+                <td>2.1 MB</td>
+                <td>2017</td>
+              </tr>
+              <tr>
+                <td><a href="static/data/2018.zip">2018.zip</a></td>
+                <td>8 MB</td>
+                <td>2018</td>
+              </tr>
+              <tr>
+                <td><a href="static/data/2019.zip">2019.zip</a></td>
+                <td>21.1 MB</td>
+                <td>2019</td>
+              </tr>
+              <tr>
+                <td><a href="static/data/2020.zip">2020.zip</a></td>
+                <td>30.1 MB</td>
+                <td>2020</td>
+              </tr>
+              <tr>
+                <td><a href="static/data/2021.zip">2021.zip</a></td>
+                <td>43.1 MB</td>
+                <td>2021</td>
+              </tr>
+              <tr>
+                <td><a href="static/data/2022.zip">2022.zip</a></td>
+                <td>35.7 MB</td>
+                <td>2022</td>
+              </tr>
+              <tr>
+                <td><a href="static/data/2023.zip">2023.zip</a></td>
+                <td>43.7 MB</td>
+                <td>2023</td>
+              </tr>
+              <tr>
+                <td><a href="static/data/2024.zip">2024.zip</a></td>
+                <td>45.5 MB</td>
+                <td>2024</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="description">
+          <p>
+            Download anonymised test data from BrowserAudit for the selected year. Data format explained in
+            <a href="static/data/README.md">this file</a>.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>General Statistics</h2>
+        <div class="chart-container">
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <table id="total-data-table">
+                    <thead>
+                      <tr>
+                        <th>Statistic (total)</th>
+                        <th>Result</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Test Suite Executions</td>
+                        <td id="totalTestsRow">Loading...</td>
+                      </tr>
+                      <tr>
+                        <td>Tests Executed</td>
+                        <td id="totalTestsExecutedRow">Loading...</td>
+                      </tr>
+                      <tr>
+                        <td>Unique User Agents</td>
+                        <td id="UniqueUserAgentsRow">Loading...</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>
+                  <table id="last-month-data-table">
+                    <thead>
+                      <tr>
+                        <th>Statistic (last month)</th>
+                        <th>Result</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Test Suite Executions</td>
+                        <td id="lastMonthTestsRow">Loading...</td>
+                      </tr>
+                      <tr>
+                        <td>Tests Executed</td>
+                        <td id="lastMonthTestsExecutedRow">Loading...</td>
+                      </tr>
+                      <tr>
+                        <td>Unique User Agents</td>
+                        <td id="lastMonthUniqueUserAgentsRow">Loading...</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="description">
+          <p>Total and last-complete-month statistics on BrowserAudit test executions and browser diversity.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Monthly Test Suite Executions</h2>
+        <div class="chart-container">
+          <div class="loader" id="monthlyExecutionsLoader"></div>
+          <canvas id="monthlyTestLine" class="chart-canvas"></canvas>
+        </div>
+        <div class="description">
+          <p>Number of monthly test suite executions on BrowserAudit since creation.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Monthly Critical Test Failures</h2>
+        <div class="chart-container">
+          <div class="loader" id="monthlyFailsLoader"></div>
+          <canvas id="monthlyFailsLine" class="chart-canvas"></canvas>
+        </div>
+        <div class="description">
+          <p>Number of monthly critical test failures on BrowserAudit since creation.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Top User Agents</h2>
+        <div class="chart-container">
+          <div class="loader" id="topUserAgentsLoader"></div>
+          <canvas id="topUserAgentsBarChart" class="chart-canvas"></canvas>
+        </div>
+        <div class="description">
+          <p>Top 5 User Agents by number of test suite executions on BrowserAudit.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Top Failure Rates by User Agent</h2>
+        <div class="chart-container">
+          <div class="loader" id="topUserAgentFailRatioLoader"></div>
+          <canvas id="topUserAgentFailureRatio" class="chart-canvas"></canvas>
+        </div>
+        <div class="description">
+          <p>Top 5 User Agents by failed/executed test ratio, over at least 100k BrowserAudit tests.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Top Failure Rates by Sub-Categories</h2>
+        <div class="chart-container">
+          <div class="loader" id="subcatTopFailLoader"></div>
+          <canvas id="subcatTopFailBarChart" class="chart-canvas"></canvas>
+        </div>
+        <div class="description">
+          <p>Top 5 BrowserAudit test sub-categories by failed/executed test ratio.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Failure Rate by Category</h2>
+        <div class="chart-container">
+          <div class="loader" id="catFailRatioLoader"></div>
+          <canvas id="catFailRatioChart" class="chart-canvas"></canvas>
+        </div>
+        <div class="description">
+          <p>Failed/executed test ratio grouped by BrowserAudit test category.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Test Skip Ratio by Category</h2>
+        <div class="chart-container">
+          <div class="loader" id="catSkipRatioLoader"></div>
+          <canvas id="catSkipRatioChart" class="chart-canvas"></canvas>
+        </div>
+        <div class="description">
+          <p>Skipped/executed test ratio grouped by BrowserAudit test category.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Average Test Duration Per Category</h2>
+        <div class="chart-container">
+          <div class="loader" id="catDurationLoader"></div>
+          <canvas id="durationBarChart" class="chart-canvas"></canvas>
+        </div>
+        <div class="description">
+          <p>Average test duration grouped by BrowserAudit test category.</p>
+        </div>
+      </div>
+
+      <!-- This statistics not interesting at the moment.
+      <div class="card">
+        <h2>Display Mode Preferences</h2>
+        <div class="chart-container">
+          <div class="loader" id="displayModePercentagesLoader"></div>
+          <canvas id="displayModePieChart" class="chart-canvas"></canvas>
+        </div>
+        <div class="description">
+          <p>A pie chart showing the percentages of users who choose each type of test suite display mode available.</p>
+        </div>
+      </div>
+      -->
+    </div>
+  </body>
+</html>

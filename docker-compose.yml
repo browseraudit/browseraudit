@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: nginx.Dockerfile
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/sites-enabled:/etc/nginx/sites-enabled:ro
+      - ./nginx/modules-enabled:/etc/nginx/modules-enabled:ro
+      - ./nginx/config:/srv/browseraudit/sysadmin/nginx:ro
+      - ./static:/srv/browseraudit/internal/production/deployments/current/static:ro
+    depends_on:
+      - app
+    networks:
+      - backend
+
+  app:
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+    container_name: go_app
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: air
+    networks:
+      - backend
+    depends_on:
+      - postgres
+      - memcached
+
+  postgres:
+    image: postgres:15-bookworm
+    container_name: postgres
+    environment:
+      POSTGRES_DB: browseraudit_db
+      POSTGRES_USER: browseraudit_user
+      POSTGRES_PASSWORD: develop_pwd
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/02-init.sql:ro
+      - ./postgres/testsuite.sql:/docker-entrypoint-initdb.d/03-testsuite.sql:ro
+    networks:
+      - backend
+
+  memcached:
+    image: memcached:alpine
+    container_name: memcached
+    networks:
+      - backend
+
+volumes:
+  pgdata:
+
+networks:
+  backend:

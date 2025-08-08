@@ -2,9 +2,10 @@ package main
 
 import (
 	"encoding/base64"
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func RedirectHandler(w http.ResponseWriter, r *http.Request) {
@@ -15,5 +16,5 @@ func RedirectHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 	}
 
-	http.Redirect(w, r, string(dest), 301)
+	http.Redirect(w, r, string(dest), http.StatusMovedPermanently)
 }

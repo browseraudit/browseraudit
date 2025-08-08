@@ -23,9 +23,24 @@ func GetRefererHandler(w http.ResponseWriter, r *http.Request) {
 	session := store.Get(w, r)
 
 	referer, err := session.Get(IMAGE_REFERER_KEY)
+	// Handle possible autoupgrade when testing referer over unsecure connection
+	if err != nil || r.Header.Get("X-Forwarded-Proto") == "https" {
+		log.Println("nil " + IMAGE_REFERER_KEY)
+		referer = ""
+	}
+
+	fmt.Fprintf(w, "%s", referer)
+}
+
+func GetReferrerPolicyHandler(w http.ResponseWriter, r *http.Request) {
+	DontCache(&w)
+
+	session := store.Get(w, r)
+
+	referer, err := session.Get(IMAGE_REFERER_KEY)
 	if err != nil {
 		log.Println("nil " + IMAGE_REFERER_KEY)
-		referer = "nil"
+		referer = ""
 	}
 
 	fmt.Fprintf(w, "%s", referer)

@@ -1,0 +1,23 @@
+userName: <username>
+accessKey: <access_key>
+# These are some examples taken from the BrowserStack documentation, change them to your liking
+platforms:
+  - deviceName: iPhone 14 Pro Max
+    osVersion: 16
+    browserName: safari
+    deviceOrientation: portrait
+  - os: Windows
+    osVersion: 10
+    browserName: Firefox
+    browserVersion: 102.0
+  - os: OS X
+    osVersion: Big Sur
+    browserName: Safari
+    browserVersion: 14.1
+browserstackLocal: false
+buildName: browseraudit-script-build
+projectName: BrowserAudit Test
+debug: false
+networkLogs: false
+consoleLogs: errors
+

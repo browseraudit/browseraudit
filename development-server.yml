@@ -1,0 +1,85 @@
+# ==============================================================================
+# WARNING
+# ==============================================================================
+
+# This configuration file is intended for local development only.
+# For ease of use it contains hard-coded, insecure database credentials. 
+# If you plan to deploy BrowserAudit publicly make sure to change these.
+
+# ==============================================================================
+# HTTP SERVER CONFIGURATION
+# ==============================================================================
+
+# The Go server is a HTTP server; it typically listens on the loopback interface
+# (or some other non-public-facing interface) and is accessed publicly via a
+# proxy server, such as nginx.
+#
+# sessionidsalt is used for generation of session IDs, and should be a
+# randomly-generated string (32 bytes is sufficient).
+#
+# geoipdatabase is the path to a MaxMind GeoIP2 or GeoLite2 database. These
+# databases allow BrowserAudit to report the physical location in which the test
+# suite is executed. The file should be uncompressed and in MaxMind's DB binary
+# format (and will therefore probably have the .mmdb file extension).
+#
+# The GeoIP2 databases can be purchased at:
+#   https://www.maxmind.com/en/geoip2-databases
+# Alternatively, the less accurate (and slightly older) GeoLite2 databases are
+# available for free at:
+#   http://dev.maxmind.com/geoip/geoip2/geolite2/
+#
+# BrowserAudit reports location information with country-level granularity, so
+# either the City or Country database will work.
+
+httpserver:
+  host: 0.0.0.0
+  port: 8000
+  sessionidsalt: 3c8e751bb948efd615efdac6b19825
+  geoipdatabase: geoip/GeoLite2-Country.mmdb
+
+# ==============================================================================
+# MEMCACHED CONFIGURATION
+# ==============================================================================
+
+# The Go server uses memcached to store session information; this involves
+# tracking which tests passed or failed and reporting the status to clients when
+# they request the test result.
+#
+# keyprefix is a string prepended to the name of every key inserted into the
+# key-value store. This makes it possible for several BrowserAudit Go servers to
+# share a single memcached server without collisions occurring.
+
+memcached:
+  host: memcached
+  port: 11211
+  keyprefix: browseraudit
+
+# ==============================================================================
+# DATABASE CONFIGURATION
+# ==============================================================================
+
+# The Go server requires access to the following:
+# - A database server running PostgreSQL 9.3 or higher, with the pgcrypto module
+#   available (refer to Section F.25 of the PostgresQL 9.3 manual);
+# - A database whose schema matches the one defined in doc/schema.sql;
+# - A user with SELECT and UPDATE privileges for this database.
+
+database:
+  host: postgres
+  port: 5432
+  username: browseraudit_user
+  password: develop_pwd
+  db: browseraudit_db
+  sslmode: disable
+
+# ==============================================================================
+# ENVIRONMENT VARIABLES
+# ==============================================================================
+
+# The settings in this file can also be configured via environment variables,
+# overriding any equivalent setting specified in this file. Configuration keys
+# map to environment variable names using the following scheme:
+#
+#     BROWSERAUDIT_<SECTION>_<KEY>
+#
+# e.g. "httpserver.host" becomes "BROWSERAUDIT_HTTPSERVER_HOST".

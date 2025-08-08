@@ -1,34 +1,13 @@
-# Compiled Object files, Static and Dynamic libs (Shared Objects)
-*.o
-*.a
-*.so
 
-# Folders
-_obj
-_test
+# Dependencies (installed via "go get")
+/pkg
+/src
 
-# Architecture specific extensions/prefixes
-*.[568vq]
-[568vq].out
+# The BrowserAudit web server binary
+/browseraudit
 
-*.cgo1.go
-*.cgo2.c
-_cgo_defun.c
-_cgo_gotypes.go
-_cgo_export.*
+# Production configuration file for the BrowserAudit web server
+/server.yaml
 
-_testmain.go
-
-*.exe
-*.test
-*.swp
-
-# Production configuration file for the BrowserAudit Go server
-/server.cfg
-
-# The GeoLite2 and GeoIP2 databases, used by the BrowserAudit Go server for
-# geolocation based on users' IP addresses
-/GeoLite2-Country.mmdb
-/GeoLite2-City.mmdb
-/GeoIP2-Country.mmdb
-/GeoIP2-City.mmdb
+# Local directory
+/tmp

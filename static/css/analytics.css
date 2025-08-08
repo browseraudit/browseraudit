@@ -1,0 +1,195 @@
+.page-title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.page-title h1 {
+  font-size: 24px;
+  margin: 0;
+  color: #333;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f1f1f1;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  width: calc(33% - 20px);
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.card h2 {
+  font-size: 20px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin: 0;
+}
+
+.description {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.info-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.chart-container {
+  /*  margin-top: 20px;
+  height: 300px;*/
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-grow: 1; /* Allows the chart to fill available space */
+  position: relative; /* Needed for positioning the loader */
+  height: auto; /* Remove the fixed height */
+  margin-top: 0; /* Remove top margin from the card's inner content */
+}
+
+.info-content {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  max-width: 200px;
+  display: none;
+}
+
+.info-icon:hover .info-content {
+  display: block;
+}
+
+.info-content p {
+  margin: 0;
+}
+
+/* table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th {
+  background-color: #f0f0f0;
+  text-align: left;
+  padding: 10px;
+}
+
+tbody td {
+  padding: 10px;
+} */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem; /* smaller font */
+}
+
+thead th {
+  background-color: #f0f0f0;
+  text-align: left;
+  padding: 6px 8px; /* reduced padding */
+}
+
+tbody td {
+  padding: 6px 8px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #e5e5e5;
+}
+
+.small-table {
+  font-size: 0.75rem; /* smaller font */
+  line-height: 1.1;
+}
+
+.small-table thead th,
+.small-table tbody td {
+  padding: 6px 8px; /* reduced padding */
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  z-index: 2;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.chart-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card {
+    width: 100%;
+  }
+}

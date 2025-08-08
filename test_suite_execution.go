@@ -4,18 +4,18 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	"github.com/gorilla/mux"
-	"github.com/lib/pq"
 	"html"
 	"html/template"
 	"log"
 	"net"
 	"net/http"
-	"os/exec"
 	"regexp"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/gorilla/mux"
+	"github.com/lib/pq"
 )
 
 type SuiteExecutionHierarchyRow struct {
@@ -54,9 +54,9 @@ type SuiteExecution struct {
 
 func ResultsPageHandler(w http.ResponseWriter, r *http.Request) {
 	v := struct {
-		Id string
+		Id      string
 		Passkey string
-	} {
+	}{
 		mux.Vars(r)["id"],
 		mux.Vars(r)["passkey"],
 	}
@@ -97,6 +97,8 @@ func GetSuiteExecutionHandler(w http.ResponseWriter, r *http.Request) {
 			log.Panic(err)
 		}
 	}
+
+	defer row.Close()
 
 	// Extract metadata from the result row to populate the execution
 	// information panel in the BrowserAudit UI
@@ -149,6 +151,7 @@ func GetSuiteExecutionHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Panic(err)
 	}
+	defer hierarchy.Close()
 
 	// The JavaScript variables f and t will be used to temporarily store
 	// references to test functions and test UI objects respectively
@@ -164,11 +167,11 @@ func GetSuiteExecutionHandler(w http.ResponseWriter, r *http.Request) {
 			log.Panic(err)
 		}
 
-		fmt.Fprintf(w, "  browserAuditUI.scoreboard.setTotal(%d);\n", hierRow.OutcomeTotal.IntSlice[0] + hierRow.OutcomeTotal.IntSlice[1] + hierRow.OutcomeTotal.IntSlice[2] + hierRow.OutcomeTotal.IntSlice[3]);
-		fmt.Fprintf(w, "  browserAuditUI.scoreboard.setOutcome('pass', %d);\n", hierRow.OutcomeTotal.IntSlice[0]);
-		fmt.Fprintf(w, "  browserAuditUI.scoreboard.setOutcome('warning', %d);\n", hierRow.OutcomeTotal.IntSlice[1]);
-		fmt.Fprintf(w, "  browserAuditUI.scoreboard.setOutcome('critical', %d);\n", hierRow.OutcomeTotal.IntSlice[2]);
-		fmt.Fprintf(w, "  browserAuditUI.scoreboard.setOutcome('skip', %d);\n", hierRow.OutcomeTotal.IntSlice[3]);
+		fmt.Fprintf(w, "  browserAuditUI.scoreboard.setTotal(%d);\n", hierRow.OutcomeTotal.IntSlice[0]+hierRow.OutcomeTotal.IntSlice[1]+hierRow.OutcomeTotal.IntSlice[2]+hierRow.OutcomeTotal.IntSlice[3])
+		fmt.Fprintf(w, "  browserAuditUI.scoreboard.setOutcome('pass', %d);\n", hierRow.OutcomeTotal.IntSlice[0])
+		fmt.Fprintf(w, "  browserAuditUI.scoreboard.setOutcome('warning', %d);\n", hierRow.OutcomeTotal.IntSlice[1])
+		fmt.Fprintf(w, "  browserAuditUI.scoreboard.setOutcome('critical', %d);\n", hierRow.OutcomeTotal.IntSlice[2])
+		fmt.Fprintf(w, "  browserAuditUI.scoreboard.setOutcome('skip', %d);\n", hierRow.OutcomeTotal.IntSlice[3])
 	}
 
 	// The remaining rows in the resulting table represent the test suite
@@ -199,7 +202,7 @@ func GetSuiteExecutionHandler(w http.ResponseWriter, r *http.Request) {
 			duration = "null"
 		}
 
-		if (hierRow.Type == "c") { // row represents a category
+		if hierRow.Type == "c" { // row represents a category
 			// Create a new UI object for this category
 			fmt.Fprintf(w,
 				"  var cat%d = browserAuditUI.testReportCategory(%d, \"%s\", \"%s\");\n",
@@ -285,12 +288,8 @@ func PutSuiteExecutionHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Add the user agent, IP address and BrowserAudit version to the struct
 	execution.UserAgent = r.UserAgent()
-	execution.IP = net.ParseIP(r.Header["X-Real-Ip"][0]).String()
-	commitHash, err := exec.Command("git", "rev-parse", "HEAD").Output()
-	if err != nil {
-		log.Panic(err)
-	}
-	execution.BrowserAuditVersion = string(commitHash)[:40] // trims newline at end of hash
+	execution.IP = RequestIP(r).String()
+	execution.BrowserAuditVersion = Version()
 
 	tx, err := db.Beginx()
 	if err != nil {
@@ -309,7 +308,7 @@ func PutSuiteExecutionHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		tx.Rollback()
 		log.Panic(err)
-	}	
+	}
 
 	// Insert the settings used for this suite execution into the database
 	for settingKey, settingValue := range execution.Settings {
@@ -322,7 +321,7 @@ func PutSuiteExecutionHandler(w http.ResponseWriter, r *http.Request) {
 
 		if err, ok := err.(*pq.Error); ok {
 			tx.Rollback()
-			
+
 			// Check whether the key/value pair violated an integrity constraint
 			var baErr error
 			if err.Code.Class() == "23" && err.Constraint == "valid_pair" {
@@ -353,11 +352,11 @@ func PutSuiteExecutionHandler(w http.ResponseWriter, r *http.Request) {
 			testResult.Reason,
 			testResult.Duration,
 		)
-	
+
 		if err, ok := err.(*pq.Error); ok {
 			//fmt.Printf("Code=%#v DataTypeName=%#v Column=%#v Constraint=%#v\n", err.Code, err.DataTypeName, err.Column, err.Constraint)
 			tx.Rollback()
-			
+
 			// Check whether any fields violated a type or integrity constraint
 			var baErr error
 			if err.Code == "22P02" && regexp.MustCompile(".*?integer:").MatchString(err.Message) {
@@ -372,7 +371,7 @@ func PutSuiteExecutionHandler(w http.ResponseWriter, r *http.Request) {
 				baErr = fmt.Errorf("Error in result for test ID %s: %d is a negative duration", testId, testResult.Duration)
 			}
 
-			if (baErr != nil) {
+			if baErr != nil {
 				// If this is an error we've anticipated, return HTTP 400 and
 				// log the error message
 				log.Printf("Error recording test results: %s\n", baErr)
@@ -390,8 +389,7 @@ func PutSuiteExecutionHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Panic(err)
 	}
-	
+
 	// Return the suite execution ID and passkey assigned to this submission
 	fmt.Fprintf(w, "%d %s", execution.Id, execution.Passkey)
 }
-

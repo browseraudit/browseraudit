@@ -3,12 +3,13 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/gorilla/mux"
 )
 
 func GenerateTestSuiteHandler(w http.ResponseWriter, r *http.Request) {
@@ -38,12 +39,12 @@ func GenerateTestSuiteHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/javascript")
 	fmt.Fprintln(w, "// Automatically-generated BrowserAudit test suite\n")
-	
+
 	// The table returned by this query is sorted by the order in which the
 	// categories and then tests are to be executed; the hierarchy is correct by
 	// the time it gets here, and so can be printed line-by-line with no further
 	// processing of the resulting table
-	
+
 	// Suggestion for using WITH RECURSIVE courtesy of:
 	// http://blog.timothyandrew.net/blog/2013/06/24/recursive-postgres-queries/
 	// (note: WITH RECURSIVE is Postgres-specific)
@@ -84,6 +85,8 @@ func GenerateTestSuiteHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	defer rows.Close()
 
 	for rows.Next() {
 		var rowType string
@@ -131,7 +134,7 @@ func GenerateTestSuiteHandler(w http.ResponseWriter, r *http.Request) {
 			parent = "null"
 		}
 
-		if (rowType == "c") { // row represents a category
+		if rowType == "c" { // row represents a category
 			fmt.Fprintf(
 				w,
 				"\nbrowserAuditTestFramework.addCategory(%d, %s, \"%s\", \"%s\");\n",

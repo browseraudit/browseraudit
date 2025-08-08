@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -23,29 +23,35 @@
     <script src="/static/js/settings.js"></script>
   </head>
   <body>
-	  <!-- Begin notification bar -->
-		<div id="notification-bar">
-			<div class="container">
-				<nav class="navbar navbar-inverse">
-					<div class="navbar-text notification-bar-text"></div>
-				</nav>
-			</div>
-		</div>
-		<!-- End notification bar -->
+    <!-- Begin notification bar -->
+    <div id="notification-bar">
+      <div class="container">
+        <nav class="navbar navbar-inverse">
+          <div class="navbar-text notification-bar-text"></div>
+        </nav>
+      </div>
+    </div>
+    <!-- End notification bar -->
     <div class="container">
       <div class="page-header">
-				<h1>BrowserAudit</h1>
+        <h1><a href="/">BrowserAudit</a></h1>
       </div>
-			<noscript>
-				<div id="scoreboard-noscript" class="jumbotron">
-					<h2>BrowserAudit requires JavaScript to run</h2>
-					<p>JavaScript support must be enabled for the following domains in order for the test suite to run:</p>
-					<p class="text-center"><code>browseraudit.com</code>, <code>test.browseraudit.com</code>, <code>browseraudit.org</code>, <code>test.browseraudit.org</code></p>
-					<p>If you use a content-blocking web browser extension such as <a href="https://noscript.net">NoScript</a>, please disable it on these domains.</p>
-				</div>
-	 		</noscript>
-			<!-- Begin scoreboard -->
-			<div id="scoreboard" class="jumbotron hide">
+      <noscript>
+        <div id="scoreboard-noscript" class="jumbotron">
+          <h2>BrowserAudit requires JavaScript to run</h2>
+          <p>JavaScript support must be enabled for the following domains in order for the test suite to run:</p>
+          <p class="text-center">
+            <code>browseraudit.com</code>, <code>test.browseraudit.com</code>, <code>browseraudit.org</code>,
+            <code>test.browseraudit.org</code>
+          </p>
+          <p>
+            If you use a content-blocking web browser extension such as <a href="https://noscript.net">NoScript</a>,
+            please disable it on these domains.
+          </p>
+        </div>
+      </noscript>
+      <!-- Begin scoreboard -->
+      <div id="scoreboard" class="jumbotron hide">
         <div class="progress">
           <div id="browseraudit-bar-pass" class="progress-bar progress-bar-success"></div>
           <div id="browseraudit-bar-warning" class="progress-bar progress-bar-warning"></div>
@@ -93,30 +99,36 @@
               </div>
             </div>
           </div>
-        </div> <!-- end row -->
+        </div>
+        <!-- end row -->
       </div>
-			<!-- End scoreboard -->
-			<!-- Begin test report list -->
-			<div id="browseraudit-test-results" class="panel panel-toplevel panel-default hide">
-				<div class="panel-heading">
-					<h2 class="panel-title">
-						<a href="#browseraudit-category-root" data-toggle="collapse" aria-expanded="false" aria-controls="browseraudit-category-root" class="collapsed">Test Details</a>
-					</h2>
-				</div>
-				<div id="browseraudit-category-root" class="panel-collapse collapse">
-					<div class="panel-body">
-						<!-- container for root category: -->
-						<div class="panel-group category-children">
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- End test report list -->
+      <!-- End scoreboard -->
+      <!-- Begin test report list -->
+      <div id="browseraudit-test-results" class="panel panel-toplevel panel-default hide">
+        <div class="panel-heading">
+          <h2 class="panel-title">
+            <a
+              href="#browseraudit-category-root"
+              data-toggle="collapse"
+              aria-controls="browseraudit-category-root"
+              class="collapsed"
+              >Test Details</a
+            >
+          </h2>
+        </div>
+        <div id="browseraudit-category-root" class="panel-collapse collapse">
+          <div class="panel-body">
+            <!-- container for root category: -->
+            <div class="panel-group category-children"></div>
+          </div>
+        </div>
+      </div>
+      <!-- End test report list -->
     </div>
 
-		<!-- Begin sandbox -->
-		<div id="sandbox"></div>
-		<!-- End sandbox -->
+    <!-- Begin sandbox -->
+    <div id="sandbox"></div>
+    <!-- End sandbox -->
 
     <script src="/static/js/jquery-1.11.3.min.js"></script>
     <script src="/static/js/jquery.cookie.js"></script>
@@ -125,24 +137,25 @@
 
     <script src="/static/js/bootstrap.min.js"></script>
 
-		<script src="/static/js/beautify.min.js"></script>
-		<script src="/static/js/beautify-html.min.js"></script>
-		<script src="/static/js/beautify-css.min.js"></script>
+    <script src="/static/js/beautify.min.js"></script>
+    <script src="/static/js/beautify-html.min.js"></script>
+    <script src="/static/js/beautify-css.min.js"></script>
 
-		<script src="/static/js/highlight.pack.js"></script>
+    <script src="/static/js/highlight.pack.js"></script>
 
-		<script src="/static/js/ui.js"></script>
-		<script src="/static/js/test_framework.js"></script>
+    <script src="/static/js/ui.js"></script>
+    <script src="/static/js/test_framework.js"></script>
 
-		<script>
-			if (browserAuditSettings.displaymode === "full" || browserAuditSettings.displaymode === "summary") browserAuditUI.scoreboard.show();
-			if (browserAuditSettings.displaymode === "full") browserAuditUI.testReportList.show();
-			browserAuditUI.notificationBar.setMessage("cloud-download", "The test suite is being prepared&hellip;", null);
-			browserAuditLoadDelayedScripts([
-				"/static/js/test_templates.js",
-				"/test_suite/"+browserAuditSettings.categories,
-				"/static/js/run.js"
-			]);
-		</script>
+    <script>
+      if (browserAuditSettings.displaymode === "full" || browserAuditSettings.displaymode === "summary")
+        browserAuditUI.scoreboard.show();
+      if (browserAuditSettings.displaymode === "full") browserAuditUI.testReportList.show();
+      browserAuditUI.notificationBar.setMessage("cloud-download", "The test suite is being prepared&hellip;", null);
+      browserAuditLoadDelayedScripts([
+        "/static/js/test_templates.js",
+        "/test_suite/" + browserAuditSettings.categories,
+        "/static/js/run.js",
+      ]);
+    </script>
   </body>
 </html>

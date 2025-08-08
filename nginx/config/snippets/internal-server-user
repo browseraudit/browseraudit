@@ -1,0 +1,25 @@
+
+location = / {
+    proxy_pass http://go_app:8000;
+
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-Host $host;
+
+    # csn 2017-05-11: allow web crawlers to index the home page
+    add_header X-Robots-Tag "all" always;
+}
+
+location ^~ /static {
+    root /srv/browseraudit/internal/production/deployments/current;
+}
+
+location / {
+    proxy_pass http://go_app:8000;
+
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header X-Forwarded-Host $host;
+
+    add_header X-Robots-Tag "none" always;
+}

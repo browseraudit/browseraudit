@@ -22,14 +22,15 @@ const SESSION_SECURE_COOKIE_SETVAL = "415"
 func ClearCookiesHandler(w http.ResponseWriter, r *http.Request) {
 	DontCache(&w)
 
+	path := regexp.MustCompile("(.*/).*?$").ReplaceAllString(r.URL.Path, "$1")
 	expires := time.Now().Add(-240 * time.Hour)
 
 	for _, c := range r.Cookies() {
 		// Don't destroy the cookie containing the session ID (set by /test)
 		if c.Name != SESSION_ID_COOKIE_NAME {
 			c.Value = "."
-			c.Domain = r.Header["X-Host"][0]
-			c.Path = r.Header["X-Path"][0]
+			c.Domain = RequestHost(r)
+			c.Path = path
 			c.Expires = expires
 
 			http.SetCookie(w, c)
@@ -43,16 +44,16 @@ func CSPCookieHandler(w http.ResponseWriter, r *http.Request) {
 	DontCache(&w)
 
 	cookieDomain := ""
-	if regexp.MustCompile("^browseraudit\\.(com|org)$").MatchString(r.Header["X-Host"][0]) {
-		cookieDomain = "." + r.Header["X-Host"][0]
+	if regexp.MustCompile("^browseraudit\\.(com|org)$").MatchString(RequestHost(r)) {
+		cookieDomain = "." + RequestHost(r)
 	} else {
-		cookieDomain = r.Header["X-Host"][0]
+		cookieDomain = RequestHost(r)
 	}
-	escapedDomain := regexp.MustCompile("\\.").ReplaceAllString(r.Header["X-Host"][0], "_")
+	escapedDomain := regexp.MustCompile("\\.").ReplaceAllString(RequestHost(r), "_")
 
 	expires := time.Now().Add(5 * time.Minute)
 	cookie := &http.Cookie{Name: CSP_COOKIE_NAME + "_" + escapedDomain,
-		Value:   r.Header["X-Host"][0],
+		Value:   RequestHost(r),
 		Domain:  cookieDomain,
 		Path:    "/",
 		Expires: expires}
@@ -85,7 +86,7 @@ func SetRequestSecureCookieHandler(w http.ResponseWriter, r *http.Request) {
 		Expires: expires,
 		Secure:  true}
 	http.SetCookie(w, cookie)
-	
+
 	http.ServeFile(w, r, "./static/pixel.png")
 }
 
@@ -104,12 +105,11 @@ func SetSessionSecureCookieHandler(w http.ResponseWriter, r *http.Request) {
 	DontCache(&w)
 
 	session := store.Get(w, r)
-
 	c, err := r.Cookie(SESSION_SECURE_COOKIE_NAME)
-	if err == nil {
-		session.Set(SESSION_SECURE_COOKIE_NAME, c.Value)
-	} else {
+	if err != nil || r.Header.Get("X-Forwarded-Proto") == "https" {
 		session.Set(SESSION_SECURE_COOKIE_NAME, "nil")
+	} else {
+		session.Set(SESSION_SECURE_COOKIE_NAME, c.Value)
 	}
 
 	http.ServeFile(w, r, "./static/pixel.png")

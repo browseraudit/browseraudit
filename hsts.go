@@ -3,9 +3,10 @@ package main
 import (
 	"encoding/base64"
 	"fmt"
-	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 const PROTOCOL_KEY = "protocol"
@@ -33,11 +34,12 @@ func SetProtocolHandler(w http.ResponseWriter, r *http.Request) {
 	DontCache(&w)
 
 	session := store.Get(w, r)
+	protocol := RequestScheme(r)
 
-	if r.Header["X-Scheme"][0] == "http" || r.Header["X-Scheme"][0] == "https" {
-		session.Set(PROTOCOL_KEY, r.Header["X-Scheme"][0])
+	if protocol == "http" || protocol == "https" {
+		session.Set(PROTOCOL_KEY, protocol)
 	} else {
-		log.Printf("Unrecognised protocol %s", r.Header["X-Scheme"][0])
+		log.Printf("Unrecognised protocol %s", protocol)
 	}
 
 	http.ServeFile(w, r, "./static/pixel.png")

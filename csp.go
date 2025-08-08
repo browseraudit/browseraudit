@@ -3,11 +3,12 @@ package main
 import (
 	"encoding/base64"
 	"fmt"
-	"github.com/gorilla/mux"
 	"html/template"
 	"log"
 	"net/http"
 	"regexp"
+
+	"github.com/gorilla/mux"
 )
 
 type CSPTemplate struct {
@@ -17,7 +18,7 @@ type CSPTemplate struct {
 
 func CSPServeHandler(w http.ResponseWriter, r *http.Request) {
 	DontCache(&w)
-	
+
 	session := store.Get(w, r)
 	id := mux.Vars(r)["id"]
 	r.ParseForm()
@@ -30,6 +31,16 @@ func CSPServeHandler(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Println(err)
 		}
+
+		// Add Report-To header and required CORS headers for CSP tests related to Reporting API
+		if id == "267" {
+			w.Header().Set("Reporting-Endpoints", `endpoint-1="https://browseraudit.com/csp/pass/267/emptyhtml"`)
+			w.Header().Set("Report-To", `{"group":"endpoint-1","max_age":31536000,"endpoints":[{"url":"https://browseraudit.com/csp/pass/267/emptyhtml"}],"include_subdomains":true}`)
+			w.Header().Set("Access-Control-Allow-Origin", "https://browseraudit.com")
+			w.Header().Set("Access-Control-Allow-Methods", "POST")
+			w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		}
+
 		w.Header().Set("Content-Security-Policy", string(policy))
 	}
 
@@ -45,26 +56,24 @@ func CSPServeHandler(w http.ResponseWriter, r *http.Request) {
 
 func CSPPassHandler(w http.ResponseWriter, r *http.Request) {
 	DontCache(&w)
-	
+
 	session := store.Get(w, r)
 	id := mux.Vars(r)["id"]
 	r.ParseForm()
-	
+
 	session.Set("csp"+id, "pass")
-	fmt.Println("Recording PASS for CSP test " + id)
 
 	CSPServeFile(w, r)
 }
 
 func CSPFailHandler(w http.ResponseWriter, r *http.Request) {
 	DontCache(&w)
-	
+
 	session := store.Get(w, r)
 	id := mux.Vars(r)["id"]
 	r.ParseForm()
-	
+
 	session.Set("csp"+id, "fail")
-	fmt.Println("Recording FAIL for CSP test " + id)
 
 	CSPServeFile(w, r)
 }
@@ -106,11 +115,15 @@ func CSPServeFile(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/javascript")
 		fmt.Fprintln(w, "// Empty JS")
 
+	case file == "emptyjson":
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprintln(w, "{}")
+
 	case file == "emptyes":
 		// We need to send a non-200 HTTP status code and/or a Content-Type
 		// other than text/event-stream to prevent Chrome from making
 		// endless requests to this "stream"
-		http.Error(w, "Method Not Allowed", 405)
+		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 		w.Header().Set("Content-Type", "text/plain")
 		fmt.Fprintln(w, "data: 1\n\n")
 
@@ -189,7 +202,7 @@ func CSPServeFile(w http.ResponseWriter, r *http.Request) {
 		// to exist, due to earlier call to addManualCookie()
 		session := store.Get(w, r)
 		p := &CSPTemplate{
-			SessionID: session.Id,
+			SessionID:    session.Id,
 			CookieDomain: cookieDomain,
 		}
 
@@ -208,8 +221,7 @@ func CSPResultHandler(w http.ResponseWriter, r *http.Request) {
 	session := store.Get(w, r)
 
 	id := mux.Vars(r)["id"]
-	result, err := session.Get("csp"+id)
-	fmt.Printf("Fetching result for CSP test %s: %s\n", id, result)
+	result, err := session.Get("csp" + id)
 	if err != nil {
 		log.Printf("nil result csp%s\n", id)
 		result = "nil"

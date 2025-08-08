@@ -1,0 +1,15 @@
+# Test Files
+csp/*
+frameoptions/*
+sop/*
+
+
+# Dependencies
+*.min.js
+*.min.css
+jquery*
+modernizr*
+highlight.pack.js
+html5shiv.js
+URI.js
+github.css

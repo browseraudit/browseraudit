@@ -3,12 +3,13 @@ package main
 import (
 	"encoding/base64"
 	"fmt"
-	"github.com/gorilla/mux"
 	"html/template"
 	"log"
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/gorilla/mux"
 )
 
 type P2CParentPage struct {
@@ -58,7 +59,7 @@ func SOPFailHandler(w http.ResponseWriter, r *http.Request) {
 	session := store.Get(w, r)
 
 	id := mux.Vars(r)["id"]
-	
+
 	// If ?serveOnly=true, just serve the iframe: don't change the test
 	// state in the session cookie
 	r.ParseForm()
@@ -74,7 +75,7 @@ func SOPResultHandler(w http.ResponseWriter, r *http.Request) {
 
 	id := mux.Vars(r)["id"]
 
-	result, err := session.Get("sop"+id)
+	result, err := session.Get("sop" + id)
 	if err != nil {
 		log.Printf("nil result sop%s", id)
 		result = "nil"
