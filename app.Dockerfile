@@ -1,6 +1,7 @@
 FROM debian:bullseye-slim
 
 ARG GOLANG_VERSION=1.21.6
+ARG TARGETARCH
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
@@ -11,11 +12,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -sSL "https://golang.org/dl/go${GOLANG_VERSION}.linux-amd64.tar.gz" -o /tmp/go.tar.gz \
+
+RUN curl -sSL "https://golang.org/dl/go${GOLANG_VERSION}.linux-${TARGETARCH}.tar.gz" -o /tmp/go.tar.gz \
     && tar -C /usr/local -xzf /tmp/go.tar.gz \
     && rm /tmp/go.tar.gz
 
 ENV PATH="/usr/local/go/bin:${PATH}"
+
+ENV CGO_ENABLED=0
 
 RUN curl -sSfL https://raw.githubusercontent.com/cosmtrek/air/master/install.sh | \
         sh -s -- -b /usr/local/bin

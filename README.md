@@ -35,6 +35,8 @@ openssl req -x509 -new -nodes -key browserauditCA.key -sha256 -days 1825 \
   -subj "/CN=browserauditCA"
 ```
 
+Install `browserauditCA.pem` as a trusted Certificate Authority in the browsers you want to test.
+
 #### Generate server key and CSR:
 
 ```
@@ -66,7 +68,7 @@ DNS.5 = test.browseraudit.org
 ```
 openssl x509 -req -in request.csr -CA browserauditCA.pem -CAkey browserauditCA.key -CAcreateserial \
   -out fullchain.pem -days 365 -sha256 -extfile v3.ext
-cat fullchain.pem browserauditCA.pem > fullchain.pem
+cat browserauditCA.pem >> fullchain.pem
 openssl verify -CAfile browserauditCA.pem fullchain.pem
 ```
 
@@ -85,7 +87,7 @@ BrowserAudit is designed to be hosted on a server running the following software
 - [Memcached](http://memcached.org), a memory caching system
 - The [Go programming language](https://golang.org)
 
-Luckily, BrowserAudit is fully containserised with Docker, so the main dependency is just a recent version of Docker. If you want to change the defualt configuration please inspect `docker-compose.yml`, `app.Dockerfile` and `nginx/nginx.Dockerfile` and you will be able to track down the various configuration files.
+Luckily, BrowserAudit is fully containserised with Docker, so the main dependency is just a recent version of Docker (Docker Engine >= 23.0). If you want to change the defualt configuration please inspect `docker-compose.yml`, `app.Dockerfile` and `nginx/nginx.Dockerfile` and you will be able to track down the various configuration files.
 
 > WARNING: the configuration file `development-server.yml` is intended for local development only, and for ease of use it contains **hard-coded, insecure passwords**. If you plan to deploy BrowserAudit publicly make sure to change these.
 
