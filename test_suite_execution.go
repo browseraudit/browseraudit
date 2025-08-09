@@ -114,15 +114,21 @@ func GetSuiteExecutionHandler(w http.ResponseWriter, r *http.Request) {
 	if hostnames, err := net.LookupAddr(ip); err == nil {
 		hostname = "\"(" + strings.Join(hostnames, ", ") + ")\""
 	} else {
+		log.Printf("Reverse DNS lookup failed for IP %s: %v", ip, err)
 		hostname = "null"
 	}
 
 	// Look up the ISO 3166-1 alpha-2 country code associated with this IP
 	// address in the GeoIP2 database
 	var country string
-	if geoipRecord, err := geoipDB.Country(net.ParseIP(ip)); err == nil {
+	parsedIP := net.ParseIP(ip)
+	if parsedIP == nil {
+		log.Printf("Could not parse IP: '%s'", ip)
+		country = "null"
+	} else if geoipRecord, err := geoipDB.Country(parsedIP); err == nil {
 		country = fmt.Sprintf("[ [\"/static/img/flags-iso/flat/16/%s.png\", \"%s\"] ]", geoipRecord.Country.IsoCode, geoipRecord.Country.Names["en"])
 	} else {
+		log.Printf("GeoIP lookup failed for IP %s: %v", ip, err)
 		country = "null"
 	}
 
