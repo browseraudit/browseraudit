@@ -1,0 +1,388 @@
+{
+  "sbom": {
+    "spdxVersion": "SPDX-2.3",
+    "dataLicense": "CC0-1.0",
+    "SPDXID": "SPDXRef-DOCUMENT",
+    "name": "com.github.browseraudit/browseraudit",
+    "documentNamespace": "https://spdx.org/spdxdocs/protobom/f752194f-26af-4e19-bc50-3507c3d94bc2",
+    "comment": "Exact versions could not be resolved for some packages. For more information: https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph#dependencies-included.",
+    "creationInfo": {
+      "creators": [
+        "Tool: protobom-v0.0.0-20250805170613-cf5b071169fb+dirty",
+        "Tool: GitHub.com-Dependency-Graph"
+      ],
+      "created": "2025-08-09T07:51:43Z"
+    },
+    "packages": [
+      {
+        "name": "selenium",
+        "SPDXID": "SPDXRef-pypi-selenium-75c946",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:pypi/selenium"
+          }
+        ]
+      },
+      {
+        "name": "browserstack-local",
+        "SPDXID": "SPDXRef-pypi-browserstack-local-75c946",
+        "versionInfo": ">= 1.2.3",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:pypi/browserstack-local"
+          }
+        ]
+      },
+      {
+        "name": "browserstack-sdk",
+        "SPDXID": "SPDXRef-pypi-browserstack-sdk-75c946",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:pypi/browserstack-sdk"
+          }
+        ]
+      },
+      {
+        "name": "github.com/fsnotify/fsnotify",
+        "SPDXID": "SPDXRef-golang-github.comfsnotify-fsnotify-v1.6.0-75c946",
+        "versionInfo": "v1.6.0",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "licenseConcluded": "BSD-3-Clause",
+        "copyrightText": "Copyright (c) 2012 The Go Authors, Copyright (c) fsnotify Authors",
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:golang/github.com/fsnotify/fsnotify@v1.6.0"
+          }
+        ]
+      },
+      {
+        "name": "github.com/go-playground/universal-translator",
+        "SPDXID": "SPDXRef-golang-github.comgo-playground-universal-translator-v0.18.1-75c946",
+        "versionInfo": "v0.18.1",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "licenseConcluded": "MIT",
+        "copyrightText": "Copyright (c) 2016 Go Playground",
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:golang/github.com/go-playground/universal-translator@v0.18.1"
+          }
+        ]
+      },
+      {
+        "name": "github.com/lib/pq",
+        "SPDXID": "SPDXRef-golang-github.comlib-pq-v1.10.9-75c946",
+        "versionInfo": "v1.10.9",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "licenseConcluded": "MIT",
+        "copyrightText": "Copyright (c) 2011-2013, pq Contributors, Copyright (c) 2014 - Gustavo Niemeyer <gustavo@niemeyer.net>, Portions Copyright (c) 2011 Blake Mizerany",
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:golang/github.com/lib/pq@v1.10.9"
+          }
+        ]
+      },
+      {
+        "name": "gopkg.in/go-playground/assert.v1",
+        "SPDXID": "SPDXRef-golang-gopkg.ingo-playground-assert.v1-v1.2.1-75c946",
+        "versionInfo": "v1.2.1",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "licenseConcluded": "MIT",
+        "copyrightText": "Copyright (c) 2015 Dean Karn",
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:golang/gopkg.in/go-playground/assert.v1@v1.2.1"
+          }
+        ]
+      },
+      {
+        "name": "github.com/go-playground/validator",
+        "SPDXID": "SPDXRef-golang-github.comgo-playground-validator-v9.31.0incompatible-75c946",
+        "versionInfo": "v9.31.0+incompatible",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "licenseConcluded": "MIT",
+        "copyrightText": "Copyright (c) 2015 Dean Karn",
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:golang/github.com/go-playground/validator@v9.31.0%2Bincompatible"
+          }
+        ]
+      },
+      {
+        "name": "github.com/leodido/go-urn",
+        "SPDXID": "SPDXRef-golang-github.comleodido-go-urn-v1.2.3-75c946",
+        "versionInfo": "v1.2.3",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "licenseConcluded": "MIT",
+        "copyrightText": "Copyright (c) 2018 Leonardo Di Donato",
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:golang/github.com/leodido/go-urn@v1.2.3"
+          }
+        ]
+      },
+      {
+        "name": "github.com/spf13/pflag",
+        "SPDXID": "SPDXRef-golang-github.comspf13-pflag-v1.0.5-75c946",
+        "versionInfo": "v1.0.5",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "licenseConcluded": "BSD-3-Clause",
+        "copyrightText": "Copyright (c) 2012 Alex Ogier, Copyright (c) 2012 The Go Authors, Copyright 2009 The Go Authors, Copyright 2010 The Go Authors, Copyright 2012 The Go Authors",
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:golang/github.com/spf13/pflag@v1.0.5"
+          }
+        ]
+      },
+      {
+        "name": "github.com/jmoiron/sqlx",
+        "SPDXID": "SPDXRef-golang-github.comjmoiron-sqlx-v1.3.5-75c946",
+        "versionInfo": "v1.3.5",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "licenseConcluded": "MIT",
+        "copyrightText": "Copyright (c) 2013, Jason Moiron",
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:golang/github.com/jmoiron/sqlx@v1.3.5"
+          }
+        ]
+      },
+      {
+        "name": "github.com/robfig/cron",
+        "SPDXID": "SPDXRef-golang-github.comrobfig-cron-v1.2.0-75c946",
+        "versionInfo": "v1.2.0",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "licenseConcluded": "MIT",
+        "copyrightText": "Copyright (c) 2012 Rob Figueiredo",
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:golang/github.com/robfig/cron@v1.2.0"
+          }
+        ]
+      },
+      {
+        "name": "github.com/gorilla/mux",
+        "SPDXID": "SPDXRef-golang-github.comgorilla-mux-v1.8.0-75c946",
+        "versionInfo": "v1.8.0",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "licenseConcluded": "BSD-3-Clause",
+        "copyrightText": "Copyright (c) 2012-2018 The Gorilla Authors, Copyright 2009 The Go Authors, Copyright 2011 Gorilla Authors, Copyright 2012 The Gorilla Authors",
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:golang/github.com/gorilla/mux@v1.8.0"
+          }
+        ]
+      },
+      {
+        "name": "golang.org/x/sys",
+        "SPDXID": "SPDXRef-golang-golang.orgx-sys-v0.7.0-75c946",
+        "versionInfo": "v0.7.0",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "copyrightText": "Copyright (c) 2009 The Go Authors, Copyright 2009 The Go Authors, Copyright 2009,2010 The Go Authors, Copyright 2010 The Go Authors, Copyright 2011 The Go Authors, Copyright 2012 The Go Authors, Copyright 2013 The Go Authors, Copyright 2014 The Go Authors, Copyright 2015 The Go Authors, Copyright 2016 The Go Authors, Copyright 2017 The Go Authors, Copyright 2018 The Go Authors, Copyright 2019 The Go Authors, Copyright 2020 The Go Authors, Copyright 2021 The Go Authors, Copyright 2022 The Go Authors, Copyright 2023 The Go Authors",
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:golang/golang.org/x/sys@v0.7.0"
+          }
+        ]
+      },
+      {
+        "name": "github.com/knadh/koanf",
+        "SPDXID": "SPDXRef-golang-github.comknadh-koanf-v1.5.0-75c946",
+        "versionInfo": "v1.5.0",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "licenseConcluded": "MIT",
+        "copyrightText": "Copyright (c) 2019, Kailash Nadh. https://github.com/knadh",
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:golang/github.com/knadh/koanf@v1.5.0"
+          }
+        ]
+      },
+      {
+        "name": "github.com/bradfitz/gomemcache",
+        "SPDXID": "SPDXRef-golang-github.combradfitz-gomemcache-v0.0.0-20230124162541-5f7a7d875746-75c946",
+        "versionInfo": "v0.0.0-20230124162541-5f7a7d875746",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "licenseConcluded": "Apache-2.0",
+        "copyrightText": "Copyright 2011 Google Inc., Copyright 2014 Google Inc.",
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:golang/github.com/bradfitz/gomemcache@v0.0.0-20230124162541-5f7a7d875746"
+          }
+        ]
+      },
+      {
+        "name": "github.com/oschwald/geoip2-golang",
+        "SPDXID": "SPDXRef-golang-github.comoschwald-geoip2-golang-v1.8.0-75c946",
+        "versionInfo": "v1.8.0",
+        "downloadLocation": "NOASSERTION",
+        "filesAnalyzed": false,
+        "licenseConcluded": "ISC",
+        "copyrightText": "Copyright (c) 2015, Gregory J. Oschwald <oschwald@gmail.com>",
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:golang/github.com/oschwald/geoip2-golang@v1.8.0"
+          }
+        ]
+      },
+      {
+        "name": "com.github.browseraudit/browseraudit",
+        "SPDXID": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "versionInfo": "master",
+        "downloadLocation": "git+https://github.com/browseraudit/browseraudit",
+        "filesAnalyzed": false,
+        "externalRefs": [
+          {
+            "referenceCategory": "PACKAGE-MANAGER",
+            "referenceType": "purl",
+            "referenceLocator": "pkg:github/browseraudit/browseraudit@master"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-pypi-browserstack-local-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-golang-github.comfsnotify-fsnotify-v1.6.0-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-golang-github.comgo-playground-universal-translator-v0.18.1-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-golang-gopkg.ingo-playground-assert.v1-v1.2.1-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-golang-github.comleodido-go-urn-v1.2.3-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-golang-github.comjmoiron-sqlx-v1.3.5-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-golang-golang.orgx-sys-v0.7.0-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-golang-github.comoschwald-geoip2-golang-v1.8.0-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-pypi-browserstack-sdk-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-golang-github.comgo-playground-validator-v9.31.0incompatible-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-golang-github.comspf13-pflag-v1.0.5-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-golang-github.comgorilla-mux-v1.8.0-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-golang-github.comknadh-koanf-v1.5.0-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-golang-github.combradfitz-gomemcache-v0.0.0-20230124162541-5f7a7d875746-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-pypi-selenium-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-golang-github.comlib-pq-v1.10.9-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relatedSpdxElement": "SPDXRef-golang-github.comrobfig-cron-v1.2.0-75c946",
+        "relationshipType": "DEPENDS_ON"
+      },
+      {
+        "spdxElementId": "SPDXRef-DOCUMENT",
+        "relatedSpdxElement": "SPDXRef-github-browseraudit-browseraudit-master-5cfa3c",
+        "relationshipType": "DESCRIBES"
+      }
+    ]
+  }
+}
