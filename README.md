@@ -114,7 +114,7 @@ psql -U browseraudit_user -d browseraudit_db
 
 ## Development
 
-The recommended usage is to starts all the containers, then edit the `go`, `js`, `html` files in the repo, and the `go_app` container will watch for changes and build/deploy BrowserAudit automatically for you.
+The recommended usage is to start all the containers, then edit the `go`, `js`, `html` files in the repo, and the `go_app` container will watch for changes and build/deploy BrowserAudit automatically for you.
 If you'd like to integrate your changes with the main Browseraudit project, see the `CONTRIBUTING.md` file for details.
 
 ### Useful functions
