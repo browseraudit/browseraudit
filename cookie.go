@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"regexp"
@@ -95,7 +96,7 @@ func GetRequestSecureCookieHandler(w http.ResponseWriter, r *http.Request) {
 
 	c, err := r.Cookie(REQUEST_SECURE_COOKIE_NAME)
 	if err == nil {
-		fmt.Fprintf(w, "%s", c.Value)
+		template.HTMLEscape(w, []byte(c.Value))
 	} else {
 		fmt.Fprintf(w, "nil")
 	}
@@ -126,7 +127,7 @@ func GetSessionSecureCookieHandler(w http.ResponseWriter, r *http.Request) {
 		c = "nil"
 	}
 
-	fmt.Fprintf(w, "%s", c)
+	template.HTMLEscape(w, []byte(c))
 }
 
 func GetDestroyMeHandler(w http.ResponseWriter, r *http.Request) {
@@ -134,7 +135,7 @@ func GetDestroyMeHandler(w http.ResponseWriter, r *http.Request) {
 
 	c, err := r.Cookie("destroyMe")
 	if err == nil {
-		fmt.Fprintf(w, "%s", c.Value)
+		template.HTMLEscape(w, []byte(c.Value))
 	} else {
 		fmt.Fprintf(w, "nil")
 	}
