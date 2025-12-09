@@ -42,7 +42,7 @@
             </p>
             <p>
               The source code and test suite of BrowserAudit are both
-              <a href="https://github.com/browseraudit/browseraudit/" target="_blank">freely available</a> if you'd like
+              <a href="https://github.com/browseraudit/browseraudit/" target="_blank">freely available on GitHub</a> if you'd like
               to inspect our work or run your own copy of BrowserAudit elsewhere.
             </p>
             <div class="about-footer">
@@ -64,23 +64,66 @@
               </a>
             </div>
           </div>
-          <div class="modal-footer">
+          <!-- <div class="modal-footer">
             <div class="text-center">
               <a href="/accessibility">Accessibility statement</a>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="page-header">
-        <h1><a href="/">BrowserAudit</a></h1>
+
+    <!-- Skip link for keyboard users -->
+    <a class="sr-only sr-only-focusable" href="#main" id="skip-to-content">Skip to main content</a>
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#main-nav"
+            aria-expanded="false"
+            aria-controls="main-nav"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">BrowserAudit</a>
+        </div>
+
+        <div id="main-nav" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/analytics">Analytics</a></li>
+            <li><a href="#" class="browseraudit-start">Run tests</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" data-toggle="modal" data-target="#about">About</a></li>
+            <li><a href="/accessibility">Accessibility</a></li>
+            <li><a href="https://github.com/browseraudit/browseraudit" target="_blank">Contribute</a></li>
+          </ul>
+        </div>
       </div>
+    </nav>
+
+    <!-- Move the page's main wrapper down a bit so the fixed navbar doesn't overlap -->
+    <main id="main" tabindex="-1" role="main">
+    <!-- existing page content .container goes here -->
+
+
+    <div class="container">
+      <!-- <div class="page-header">
+        <h1><a href="/">BrowserAudit</a></h1>
+      </div> -->
       <div class="jumbotron">
         <h1>How secure is your browser?</h1>
         <p>
           BrowserAudit checks that your web browser correctly implements a wide variety of security standards and
-          features. <a href="#" data-toggle="modal" data-target="#about">Find out more.</a>
+          features. <a href="#" data-toggle="modal" data-target="#about">Find out more about BrowserAudit.</a>
         </p>
         <p>
           On the <a href="/analytics" target="_blank">analytics</a> page you can see live statistics from BrowserAudit,
@@ -107,7 +150,7 @@
                 data-toggle="collapse"
                 aria-controls="browseraudit-categories"
                 class="collapsed"
-                >Choose Test Categories <small>(Advanced)</small></a
+                >Choose Test Categories</a
               >
             </h2>
           </div>
@@ -174,24 +217,28 @@
               <div class="form-group" data-setting="displaymode">
                 <label class="col-sm-2 control-label">Display mode</label>
                 <div class="col-sm-10">
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="displaymode" value="none" />
-                      None <small>(only shows notification bar)</small>
-                    </label>
-                  </div>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="displaymode" value="summary" />
-                      Summary <small>(only shows notification bar and overall test scores)</small>
-                    </label>
-                  </div>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="displaymode" value="full" checked />
-                      Full <small>(shows notification bar, overall test scores and individual test results)</small>
-                    </label>
-                  </div>
+                  <fieldset role="radiogroup" aria-labelledby="label-displaymode">
+                    <legend id="label-displaymode" class="sr-only">Display mode</legend>
+                    <div class="radio">
+                      <label for="displaymode-none">
+                        <input id="displaymode-none" type="radio" name="displaymode" value="none" />
+                        None <small>(only shows notification bar)</small>
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label for="displaymode-summary">
+                        <input id="displaymode-summary" type="radio" name="displaymode" value="summary" />
+                        Summary <small>(only shows notification bar and overall test scores)</small>
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label for="displaymode-full">
+                        <input id="displaymode-full" type="radio" name="displaymode" value="full" checked />
+                        Full <small>(shows notification bar, overall test scores and individual test results)</small>
+                      </label>
+                    </div>
+                  </fieldset>
+                  <p class="sr-only">Keyboard: use arrow keys to change options.</p>
                   <p class="description">
                     If you're running BrowserAudit on a mobile device or an older computer, it may run faster if you
                     choose one of the lesser display modes. You'll still be able to review individual test results later
@@ -202,26 +249,28 @@
               <div class="form-group" data-setting="sendresults">
                 <label class="col-sm-2 control-label">Test result reporting</label>
                 <div class="col-sm-10">
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="sendresults" value="false" />
-                      Off
-                    </label>
-                  </div>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="sendresults" value="true" checked />
-                      On
-                    </label>
-                  </div>
+                  <fieldset role="radiogroup" aria-labelledby="label-sendresults">
+                    <legend id="label-sendresults" class="sr-only">Test result reporting</legend>
+                    <div class="radio">
+                      <label for="sendresults-off">
+                        <input id="sendresults-off" type="radio" name="sendresults" value="false" />
+                        Off
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label for="sendresults-on">
+                        <input id="sendresults-on" type="radio" name="sendresults" value="true" checked />
+                        On
+                      </label>
+                    </div>
+                  </fieldset>
+                  <p class="sr-only">Keyboard: use arrow keys to change options.</p>
                   <p class="description">
                     Reporting your test results allows you (and only you) to review them later, and allows us to improve
                     BrowserAudit's performance and design more effective tests. We'll store your test results, along
                     with your IP address and web browser's <code>User-Agent</code> string.
-                    <strong
-                      >We do not collect any personally-identifying information or share your individual test results
-                      with anyone else.</strong
-                    >
+                    <strong>We do not collect any personally-identifying information or share your individual test results
+                      with anyone else.</strong>
                   </p>
                 </div>
               </div>

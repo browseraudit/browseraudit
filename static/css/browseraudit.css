@@ -95,7 +95,15 @@ img.ngi0-logo {
 }
 
 #browseraudit-categories .treegrid-expander {
-  cursor: inherit; /* overrides jquery-treegrid's value of cursor for .treegrid-expander (see rule below) */
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: text-top;
 }
 
 #browseraudit-categories .glyphicon-chevron-down,
@@ -192,6 +200,47 @@ img.ngi0-logo {
 
 #notification-bar .glyphicon {
   margin-right: 10px;
+}
+
+/* Strong overrides to ensure the notification bar displays white text on
+   a black background and to prevent default button/browser styles from
+   producing a light-gray rounded box around the message. */
+#notification-bar .navbar {
+  background-image: none !important;
+  background-color: #000 !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+#notification-bar .notification-bar-text {
+  color: #fff !important;
+}
+
+#notification-bar .navbar * {
+  background: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #fff !important;
+}
+
+#notification-bar .notification-action {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: #fff !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font: inherit !important;
+}
+
+#notification-bar .notification-action:focus {
+  outline: none !important;
+  text-decoration: underline !important;
 }
 
 /* Top-level panels */

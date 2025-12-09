@@ -24,6 +24,48 @@
     <script src="/static/js/settings.js"></script>
   </head>
   <body>
+    
+    <!-- Skip link for keyboard users -->
+    <a class="sr-only sr-only-focusable" href="#main" id="skip-to-content">Skip to main content</a>
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#main-nav"
+            aria-expanded="false"
+            aria-controls="main-nav"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">BrowserAudit</a>
+        </div>
+
+        <div id="main-nav" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/analytics">Analytics</a></li>
+            <li><a href="#" class="browseraudit-start">Run tests</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" data-toggle="modal" data-target="#about">About</a></li>
+            <li><a href="/accessibility">Accessibility</a></li>
+            <li><a href="https://github.com/browseraudit/browseraudit" target="_blank">Contribute</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Move the page's main wrapper down a bit so the fixed navbar doesn't overlap -->
+    <main id="main" tabindex="-1" role="main">
+    <!-- existing page content .container goes here -->
+
     <!-- Begin notification bar -->
     <div id="notification-bar">
       <div class="container">
@@ -56,6 +98,8 @@
       </div>
       <!-- Begin scoreboard -->
       <div id="scoreboard" class="jumbotron hide">
+        <!-- Live announcer for screen readers -->
+        <div id="scoreboard-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
         <div class="progress">
           <div id="browseraudit-bar-pass" class="progress-bar progress-bar-success"></div>
           <div id="browseraudit-bar-warning" class="progress-bar progress-bar-warning"></div>

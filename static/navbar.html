@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/bootstrap-theme.min.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+      }
+      .navbar {
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Skip link for keyboard users -->
+    <a class="sr-only sr-only-focusable" href="#main" id="skip-to-content">Skip to main content</a>
+
+    <nav class="navbar navbar-default" role="navigation" aria-label="Main navigation">
+      <div class="navbar-header">
+        <button
+          type="button"
+          class="navbar-toggle collapsed"
+          data-toggle="collapse"
+          data-target="#main-nav"
+          aria-expanded="false"
+          aria-controls="main-nav"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/" target="_parent">BrowserAudit</a>
+      </div>
+
+      <div id="main-nav" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="/analytics" target="_parent">Analytics</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/accessibility" target="_parent">Accessibility</a></li>  
+          <li><a href="https://github.com/browseraudit/browseraudit" target="_blank" target="_parent">Contribute</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <script src="./js/jquery-1.11.3.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+  </body>
+</html>

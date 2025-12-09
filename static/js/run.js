@@ -113,9 +113,13 @@
                   res[0] +
                   "/" +
                   res[1] +
-                  '">this link</a>.',
+                  '">this permanent link to the test results</a>.',
                 null,
               );
+              // Announce final summary for screen readers
+              try {
+                browserAuditUI.scoreboard.announceSummary();
+              } catch (e) {}
             },
             error: function (xhr, status, err) {
               // HTTP status code 400 indicates a problem with the JSON object
@@ -129,6 +133,9 @@
                     document.location.reload(true);
                   },
                 );
+                try {
+                  browserAuditUI.scoreboard.announceSummary();
+                } catch (e) {}
                 // Any other HTTP status code indicates some other problem not
                 // related to the data we sent, and it might succeed if we try
                 // sending it again
@@ -138,6 +145,9 @@
                   "The test suite has finished executing, but there was a problem sending the test results to BrowserAudit. Click here to try sending them again.",
                   sendResults,
                 );
+                try {
+                  browserAuditUI.scoreboard.announceSummary();
+                } catch (e) {}
               }
             },
           });
@@ -145,6 +155,9 @@
         sendResults();
       } else {
         browserAuditUI.notificationBar.setMessage("off", "The test suite has finished executing.", null);
+        try {
+          browserAuditUI.scoreboard.announceSummary();
+        } catch (e) {}
       }
     },
   };
